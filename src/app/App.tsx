@@ -7,6 +7,8 @@ import CourseDetail from "./pages/CourseDetail"
 import WhyChooseUs from "./pages/WhyChooseUs"
 import Contact from "./pages/Contact"
 import Enroll from "./pages/Enroll"
+import TermsAndConditions from "./pages/TermsAndConditions"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
       { path: "why-choose-us",    element: <WhyChooseUs /> },
       { path: "contact",          element: <Contact /> },
       { path: "enroll",           element: <Enroll /> },
+      { path: "terms",            element: <TermsAndConditions /> },
+      { path: "privacy",          element: <PrivacyPolicy /> },
     ],
   },
 ])

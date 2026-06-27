@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useSearchParams, Link } from "react-router"
 import { CheckCircle, BookOpen, Users, Award, Clock, Star, ArrowRight } from "lucide-react"
-import { IslamicPattern, Reveal, PageHero, COURSES, TESTI, CTASection, STAR_PATH } from "../shared"
+import { IslamicPattern, Reveal, PageHero, COURSES, TESTI, CTASection, STAR_PATH , SEO } from "../shared"
 
 const SCHEDULES  = ["Morning (6 AM – 12 PM)", "Afternoon (12 PM – 6 PM)", "Evening (6 PM – 10 PM)", "Flexible / Recorded Only"]
 const COUNTRIES  = ["United States", "United Kingdom", "Pakistan", "Saudi Arabia", "UAE", "Canada", "Australia", "India", "Egypt", "Turkey", "Other"]
@@ -36,10 +36,10 @@ function EnrollForm({ preselected }: { preselected: string }) {
           Our team will contact you at {form.email} within 24 hours to confirm your registration.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Link to="/courses" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all">
+          <Link to="/courses" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all">
             Browse More Courses <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link to="/" className="inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
+          <Link to="/" className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
             Back to Home
           </Link>
         </div>

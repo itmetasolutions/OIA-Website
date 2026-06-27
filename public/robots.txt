@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://openislamicacademy.com/sitemap.xml
+
+# Disallow admin / private paths (if added later)
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/

@@ -5,7 +5,7 @@ import {
   ChevronRight, Clock, BarChart2, Globe, CheckCircle, ChevronDown, ChevronUp,
   BookOpen, Users, Award, Play, ArrowRight,
 } from "lucide-react"
-import { COURSES, Reveal, IslamicPattern, CTASection, titleToSlug } from "../shared"
+import { COURSES, Reveal, IslamicPattern, CTASection, titleToSlug, SEO } from "../shared"
 import { COURSE_DETAILS } from "../data/courseDetails"
 
 function getCourseDetail(slug: string) {
@@ -244,7 +244,7 @@ function RelatedCourses({ currentTitle }: { currentTitle: string }) {
           ))}
         </div>
         <Reveal className="mt-10 text-center">
-          <Link to="/courses" className="inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
+          <Link to="/courses" className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
             View All Courses <ArrowRight className="w-4 h-4" />
           </Link>
         </Reveal>
@@ -264,7 +264,7 @@ export default function CourseDetail() {
         <BookOpen className="w-16 h-16 text-primary/30" />
         <h1 className="text-2xl font-bold text-foreground">Course not found</h1>
         <p className="text-muted-foreground">The course you are looking for does not exist or has been removed.</p>
-        <Link to="/courses" className="mt-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:bg-primary/90 transition-all">
+        <Link to="/courses" className="mt-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full hover:bg-primary/90 transition-all">
           Browse All Courses
         </Link>
       </div>
@@ -273,6 +273,14 @@ export default function CourseDetail() {
 
   return (
     <>
+      <SEO
+        title={`${course.title} — Online Islamic Course`}
+        description={`${detail.longDesc.slice(0, 155)}…`}
+        keywords={`${course.title}, Islamic course online, ${course.level.toLowerCase()} Islamic education, learn ${course.title.toLowerCase()}, Open Islamic Academy`}
+        canonical={`/courses/${slug}`}
+        ogImage={`https://openislamicacademy.com/Images/Courses Images/${detail.photo}.webp`}
+        schema={courseSchema}
+      />
       <Breadcrumb title={course.title} />
       <CourseHero
         title={course.title}

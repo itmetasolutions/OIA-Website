@@ -147,14 +147,25 @@ export default function Footer() {
 
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            © 2024 Open Islamic Academy. All rights reserved.
+            © 2025 Open Islamic Academy. All rights reserved.
           </p>
-          <p className="text-xs flex items-center gap-2" style={{ color: "rgba(255,255,255,0.38)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            Built with sincerity for the seekers of knowledge
-            <svg viewBox="0 0 100 100" fill="none" stroke="#0A7A58" strokeWidth="5.5" style={{ width: 12, height: 12, opacity: 0.7 }}>
-              <path d={STAR_PATH} />
-            </svg>
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/terms"
+              className="text-xs hover:text-white transition-colors"
+              style={{ color: "rgba(255,255,255,0.38)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              Terms & Conditions
+            </Link>
+            <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
+            <Link
+              to="/privacy"
+              className="text-xs hover:text-white transition-colors"
+              style={{ color: "rgba(255,255,255,0.38)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

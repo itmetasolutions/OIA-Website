@@ -1,12 +1,61 @@
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "motion/react"
 import { Link } from "react-router"
+import { Helmet } from "react-helmet-async"
 import {
   BookOpen, Star, Bookmark, Eye, FileText, Layers,
   Shield, ShieldCheck, Heart, GraduationCap, Globe, Compass,
   Award, Feather, Search, Lightbulb, Users,
   ArrowRight, CheckCircle,
 } from "lucide-react"
+
+const SITE = "https://openislamicacademy.com"
+const SITE_NAME = "Open Islamic Academy"
+const DEFAULT_IMG = `${SITE}/Images/OIA Logo Light Mode.webp`
+
+export function SEO({
+  title,
+  description,
+  keywords = "",
+  canonical = "",
+  ogImage = DEFAULT_IMG,
+  schema,
+}: {
+  title: string
+  description: string
+  keywords?: string
+  canonical?: string
+  ogImage?: string
+  schema?: object
+}) {
+  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`
+  const url = canonical ? `${SITE}${canonical}` : SITE
+  return (
+    <Helmet>
+      <title>{fullTitle}</title>
+      <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href={url} />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:image" content={ogImage} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+
+      {schema && (
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      )}
+    </Helmet>
+  )
+}
 
 export function titleToSlug(title: string): string {
   return title
@@ -109,7 +158,7 @@ export function StatsBar() {
           <span className="text-xs font-bold tracking-[0.18em] uppercase text-white/55">Our Impact</span>
           <h2 className="mt-2 text-3xl lg:text-4xl font-bold text-white">Trusted by Students Worldwide</h2>
         </Reveal>
-        <div className="grid grid-cols-2 md:grid-cols-5" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+        <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
           {STATS.map(({ value, suffix, label }, i) => (
             <div key={label} style={{ borderRight: i < STATS.length - 1 ? "1px solid rgba(255,255,255,0.1)" : undefined }}>
               <StatCell value={value} suffix={suffix} label={label} />
@@ -142,10 +191,10 @@ export function CTASection({ title, subtitle }: { title: React.ReactNode; subtit
             {subtitle}
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <Link to="/enroll" className="inline-flex items-center gap-2.5 text-white font-bold px-8 py-4 rounded-full hover:-translate-y-0.5 transition-all duration-200" style={{ background: "#0A7A58", boxShadow: "0 16px 48px rgba(10,122,88,0.45)" }}>
+            <Link to="/enroll" className="inline-flex items-center gap-2.5 text-white font-bold px-4 py-2.5 sm:px-8 sm:py-4 rounded-full hover:-translate-y-0.5 transition-all duration-200" style={{ background: "#0A7A58", boxShadow: "0 16px 48px rgba(10,122,88,0.45)" }}>
               Enroll Now <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link to="/contact" className="inline-flex items-center gap-2.5 text-white font-bold px-8 py-4 rounded-full hover:-translate-y-0.5 transition-all duration-200" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}>
+            <Link to="/contact" className="inline-flex items-center gap-2.5 text-white font-bold px-4 py-2.5 sm:px-8 sm:py-4 rounded-full hover:-translate-y-0.5 transition-all duration-200" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}>
               Contact Us
             </Link>
           </div>
@@ -268,6 +317,5 @@ export const STATS = [
   { value: 5000, suffix: "+", label: "Students Worldwide" },
   { value: 25,   suffix: "+", label: "Professional Courses" },
   { value: 20,   suffix: "+", label: "Qualified Teachers" },
-  { value: 30,   suffix: "+", label: "Countries Reached" },
   { value: 95,   suffix: "%", label: "Student Satisfaction" },
 ]

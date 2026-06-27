@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router"
 import { motion } from "motion/react"
 import { ArrowRight, CheckCircle, Star, Heart, Globe, BookOpen, Shield, Award } from "lucide-react"
-import { IslamicPattern, Reveal, PageHero, TESTI, StatsBar, CTASection, STAR_PATH } from "../shared"
+import { IslamicPattern, Reveal, PageHero, TESTI, StatsBar, CTASection, STAR_PATH, SEO } from "../shared"
 
 // ─── Our Story ────────────────────────────────────────────────────────────────
 function OurStory() {
@@ -10,20 +10,18 @@ function OurStory() {
     <section className="py-24 lg:py-32 bg-card relative overflow-hidden">
       <div className="absolute inset-0"><IslamicPattern color="#0A7A58" opacity={0.038} /></div>
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-          <Reveal>
-            <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-stretch">
+          <Reveal className="h-full">
+            <div className="relative h-full">
+              <div className="rounded-3xl overflow-hidden shadow-2xl h-full">
                 <img
-                  src="https://images.unsplash.com/photo-1609599006353-e629aaabfcfb?auto=format&fit=crop&w=800&h=600&q=80"
-                  alt="Quran study"
-                  className="w-full h-[460px] object-cover"
+                  src="/Images/About Us/A Legacy of Authentic Learning.webp"
+                  alt="A Legacy of Authentic Learning"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: 320 }}
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-6 shadow-2xl shadow-primary/30">
-                <div className="text-4xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>2018</div>
-                <div className="text-sm text-white/75 font-medium mt-1">Founded with a mission</div>
-              </div>
+
             </div>
           </Reveal>
 
@@ -82,8 +80,8 @@ function MissionVision() {
           <Reveal>
             <div className="relative rounded-3xl overflow-hidden h-full">
               <img
-                src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&w=800&h=500&q=80"
-                alt="Islamic architecture"
+                src="/Images/About Us/Making Islamic Knowledge Accessible.webp"
+                alt="Making Islamic Knowledge Accessible"
                 className="w-full h-64 object-cover"
               />
               <div className="absolute inset-0 h-64 bg-gradient-to-b from-transparent to-black/60" />
@@ -114,8 +112,8 @@ function MissionVision() {
           <Reveal delay={0.14}>
             <div className="relative rounded-3xl overflow-hidden h-full">
               <img
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&h=500&q=80"
-                alt="Arabic calligraphy"
+                src="/Images/About Us/A World United Through Knowledge.webp"
+                alt="A World United Through Knowledge"
                 className="w-full h-64 object-cover"
               />
               <div className="absolute inset-0 h-64 bg-gradient-to-b from-transparent to-black/60" />
@@ -188,10 +186,10 @@ function Values() {
 // ─── Islamic Images Strip ─────────────────────────────────────────────────────
 function IslamicImagesStrip() {
   const images = [
-    { src: "photo-1585036401990-e3e49d0f1e85", label: "Quran Studies" },
-    { src: "photo-1507842217343-583bb7270b66", label: "Knowledge" },
-    { src: "photo-1481627834876-b7833e8f5570", label: "Library" },
-    { src: "photo-1543269865-cbf427effbad", label: "Community" },
+    { src: "/Images/About Us/Quran Studies.webp",                   label: "Quran Studies" },
+    { src: "/Images/About Us/Library.webp",                          label: "Library" },
+    { src: "/Images/About Us/Community.webp",                        label: "Community" },
+    { src: "/Images/About Us/A World United Through Knowledge.webp", label: "Our Vision" },
   ]
   return (
     <section className="py-16 bg-background">
@@ -201,7 +199,7 @@ function IslamicImagesStrip() {
             <Reveal key={src} delay={i * 0.08}>
               <div className="relative rounded-2xl overflow-hidden group">
                 <img
-                  src={`https://images.unsplash.com/${src}?auto=format&fit=crop&w=400&h=300&q=80`}
+                  src={src}
                   alt={label}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -264,13 +262,14 @@ function WhyStrip() {
   return (
     <section className="py-20 bg-background relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <Reveal>
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
+        <div className="grid lg:grid-cols-2 gap-14 items-stretch">
+          <Reveal className="h-full">
+            <div className="rounded-3xl overflow-hidden shadow-2xl h-full">
               <img
                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&h=500&q=80"
                 alt="Online learning"
-                className="w-full h-[380px] object-cover"
+                className="w-full h-full object-cover"
+                style={{ minHeight: 280 }}
               />
             </div>
           </Reveal>
@@ -285,10 +284,10 @@ function WhyStrip() {
                 online learning, delivering an experience that is both deeply authentic and practically accessible.
               </p>
               <div className="flex gap-4">
-                <Link to="/why-choose-us" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all">
+                <Link to="/why-choose-us" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all">
                   Why Choose Us <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/enroll" className="inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
+                <Link to="/enroll" className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
                   Enroll Now
                 </Link>
               </div>
@@ -303,6 +302,12 @@ function WhyStrip() {
 export default function About() {
   return (
     <>
+      <SEO
+        title="About Us — Our Story, Mission & Values"
+        description="Learn about Open Islamic Academy — founded in 2018 to provide authentic Islamic education worldwide. Discover our mission, vision, values and the scholars behind our courses."
+        keywords="about Islamic academy, Islamic education mission, qualified Islamic scholars, online Islamic school, authentic Islamic learning"
+        canonical="/about"
+      />
       <PageHero
         badge="Open Islamic Academy"
         title={<>About <span className="text-primary italic">Our Academy</span></>}

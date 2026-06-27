@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Mail, Phone, MapPin, MessageCircle, ChevronDown, ChevronUp } from "lucide-react"
-import { IslamicPattern, Reveal, PageHero, CTASection } from "../shared"
+import { IslamicPattern, Reveal, PageHero, CTASection, SEO } from "../shared"
 
 const CONTACT_ITEMS = [
   { Icon: Mail,          label: "Email Us", value: "info@openislamicacademy.com", sub: "We reply within 24 hours",   col: "#0A7A58" },
@@ -175,6 +175,12 @@ function ContactForm() {
 export default function Contact() {
   return (
     <>
+      <SEO
+        title="Contact Us — Get in Touch with Open Islamic Academy"
+        description="Have a question about our Islamic courses? Contact Open Islamic Academy via email, phone or WhatsApp. Our team responds within 24 hours."
+        keywords="contact Islamic academy, Islamic course enquiry, online Islamic school contact, Islamic education support"
+        canonical="/contact"
+      />
       <PageHero
         badge="Contact Us"
         title={<>We would Love to <span className="text-primary italic">Hear From You</span></>}

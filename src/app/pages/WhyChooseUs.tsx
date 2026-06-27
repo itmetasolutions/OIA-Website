@@ -1,16 +1,16 @@
 import { Link } from "react-router"
 import { ArrowRight } from "lucide-react"
-import { IslamicPattern, Reveal, PageHero, WHY, STEPS, StatsBar, CTASection } from "../shared"
+import { IslamicPattern, Reveal, PageHero, WHY, STEPS, StatsBar, CTASection, SEO } from "../shared"
 
 // ─── Alternating Feature Rows ─────────────────────────────────────────────────
-function FeatureRow({ Icon, title, desc, photo, flip, index }: {
-  Icon: React.ElementType; title: string; desc: string; photo: string; flip: boolean; index: number
+function FeatureRow({ Icon, title, desc, flip, index }: {
+  Icon: React.ElementType; title: string; desc: string; photo?: string; flip: boolean; index: number
 }) {
   return (
     <Reveal delay={0.05}>
-      <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${flip ? "lg:[&>*:first-child]:order-2" : ""}`}>
+      <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch ${flip ? "lg:[&>*:first-child]:order-2" : ""}`}>
         {/* Text */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 justify-center">
           <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
             <Icon className="w-7 h-7 text-primary" />
           </div>
@@ -27,12 +27,13 @@ function FeatureRow({ Icon, title, desc, photo, flip, index }: {
         </div>
 
         {/* Image */}
-        <div className="relative">
-          <div className="rounded-3xl overflow-hidden shadow-2xl">
+        <div className="relative h-full">
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-full">
             <img
-              src={`https://images.unsplash.com/${photo}?auto=format&fit=crop&w=800&h=560&q=80`}
+              src={`/Images/Why Choose/${title}.webp`}
               alt={title}
-              className="w-full h-[380px] object-cover"
+              className="w-full h-full object-cover"
+              style={{ minHeight: 280 }}
             />
           </div>
           {/* Decorative accent */}
@@ -98,7 +99,7 @@ function Process() {
         </div>
         <Reveal className="mt-14 text-center">
           <Link to="/enroll"
-            className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
+            className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-8 sm:py-4 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
             Begin Your Journey <ArrowRight className="w-5 h-5" />
           </Link>
         </Reveal>
@@ -159,6 +160,12 @@ function Comparison() {
 export default function WhyChooseUs() {
   return (
     <>
+      <SEO
+        title="Why Choose Open Islamic Academy for Online Islamic Learning"
+        description="Discover why 5,000+ students trust Open Islamic Academy — qualified scholars, structured curriculum, live classes, accredited certificates, affordable pricing and lifetime access."
+        keywords="why choose Islamic academy, best online Islamic school, qualified Islamic teachers, Islamic certificate online, structured Islamic curriculum, affordable Islamic education"
+        canonical="/why-choose-us"
+      />
       <PageHero
         badge="Why Choose Us"
         title={<>The Open Islamic Academy <span className="text-primary italic">Difference</span></>}

@@ -6,13 +6,13 @@ import {
   ChevronRight, Users, GraduationCap,
 } from "lucide-react"
 import {
-  STAR_PATH, IslamicPattern, Reveal, COURSES, WHY, STEPS, StatsBar, CTASection, titleToSlug,
+  STAR_PATH, IslamicPattern, Reveal, COURSES, WHY, STEPS, StatsBar, CTASection, titleToSlug, SEO,
 } from "../shared"
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-[68px]">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-[30px]">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/50 to-background" />
       <IslamicPattern color="#0A7A58" opacity={0.055} />
       <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/6 blur-3xl" />
@@ -45,14 +45,14 @@ function Hero() {
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.52 }}
-              className="flex flex-wrap gap-4">
+              className="flex flex-row gap-3">
               <Link to="/enroll"
-                className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground font-bold px-7 py-3.5 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
-                Enroll Now <ArrowRight className="w-4 h-4" />
+                className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold text-xs sm:text-sm px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
+                Enroll Now <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </Link>
               <Link to="/courses"
-                className="inline-flex items-center gap-2.5 bg-card text-foreground font-bold px-7 py-3.5 rounded-full border border-border shadow-sm hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200">
-                <Play className="w-4 h-4 text-primary fill-primary" /> Explore Courses
+                className="inline-flex items-center gap-1.5 bg-card text-foreground font-bold text-xs sm:text-sm px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full border border-border shadow-sm hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
+                <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary fill-primary" /> Explore Courses
               </Link>
             </motion.div>
 
@@ -68,7 +68,7 @@ function Hero() {
           </div>
 
           {/* Visual */}
-          <div className="flex items-center justify-center">
+          <div className="hidden lg:flex items-center justify-center">
             <motion.div initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="relative" style={{ width: 320, height: 320 }}>
               <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/15" style={{ animation: "spin 36s linear infinite" }}>
@@ -115,7 +115,7 @@ function Hero() {
         </div>
       </div>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
         <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">Scroll</span>
         <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.6, repeat: Infinity }}
           className="w-px h-10 bg-gradient-to-b from-primary/60 to-transparent" />
@@ -131,18 +131,19 @@ function AboutPreview() {
     <section className="py-24 lg:py-32 bg-card relative overflow-hidden">
       <div className="absolute inset-0"><IslamicPattern color="#0A7A58" opacity={0.038} /></div>
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-          <Reveal>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-stretch">
+          <Reveal className="h-full">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full">
               <img
-                src="https://images.unsplash.com/photo-1585036401990-e3e49d0f1e85?auto=format&fit=crop&w=800&h=600&q=80"
-                alt="Students learning"
-                className="w-full h-[420px] object-cover"
+                src="/Images/Home/About Open Islamic Academy.webp"
+                alt="About Open Islamic Academy"
+                className="w-full h-full object-cover"
+                style={{ minHeight: 320 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="flex gap-4">
-                  {[["Since 2018", "Established"], ["30+", "Countries"], ["5000+", "Students"]].map(([v, l]) => (
+                <div className="flex gap-4 justify-center">
+                  {[["30+", "Countries"], ["5000+", "Students"]].map(([v, l]) => (
                     <div key={l} className="bg-white/15 backdrop-blur rounded-xl px-4 py-3 text-center border border-white/20">
                       <div className="text-lg font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>
                       <div className="text-[10px] text-white/80 font-semibold">{l}</div>
@@ -178,10 +179,10 @@ function AboutPreview() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-4 pt-3">
-                <Link to="/about" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all duration-200">
+                <Link to="/about" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all duration-200">
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/contact" className="inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full hover:bg-primary/6 transition-all duration-200" style={{ border: "1px solid rgba(10,122,88,0.28)" }}>
+                <Link to="/contact" className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full hover:bg-primary/6 transition-all duration-200" style={{ border: "1px solid rgba(10,122,88,0.28)" }}>
                   Contact Us <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -210,7 +211,7 @@ function FeaturedCourses() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {shown.map(({ title, desc }, i) => (
             <Reveal key={title} delay={(i % 3) * 0.07}>
               <div className="group h-full bg-card border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/28 hover:shadow-2xl hover:shadow-primary/7 hover:-translate-y-1.5 transition-all duration-300">
@@ -240,7 +241,7 @@ function FeaturedCourses() {
 
         <Reveal className="mt-12 text-center">
           <Link to="/courses"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-3.5 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
             View All {COURSES.length} Courses <ArrowRight className="w-4 h-4" />
           </Link>
         </Reveal>
@@ -278,7 +279,7 @@ function WhyPreview() {
         </div>
         <Reveal className="mt-10 text-center">
           <Link to="/why-choose-us"
-            className="inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full hover:bg-primary/6 transition-all border border-primary/25">
+            className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-6 sm:py-3 rounded-full hover:bg-primary/6 transition-all border border-primary/25">
             See All Reasons <ChevronRight className="w-4 h-4" />
           </Link>
         </Reveal>
@@ -319,7 +320,7 @@ function Process() {
         </div>
         <Reveal className="mt-14 text-center">
           <Link to="/enroll"
-            className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
+            className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-8 sm:py-4 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200">
             Begin Your Journey <ArrowRight className="w-5 h-5" />
           </Link>
         </Reveal>
@@ -329,8 +330,23 @@ function Process() {
 }
 
 export default function Home() {
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Home | Open Islamic Academy",
+    "url": "https://openislamicacademy.com",
+    "description": "Open Islamic Academy — authentic online Islamic education covering Quran, Arabic, Hadith, Aqeedah, Fiqh and more, taught by qualified scholars worldwide.",
+    "isPartOf": { "@type": "WebSite", "name": "Open Islamic Academy", "url": "https://openislamicacademy.com" }
+  }
   return (
     <>
+      <SEO
+        title="Authentic Online Islamic Education"
+        description="Join 5,000+ students learning Quran, Tajweed, Arabic, Hadith, Aqeedah and Islamic sciences online with qualified scholars. Enroll in 25+ structured courses today."
+        keywords="online Islamic education, Quran classes online, learn Quran with Tajweed, Islamic courses online, Arabic language online, Hadith studies, Islamic academy online, learn Islam"
+        canonical="/"
+        schema={homeSchema}
+      />
       <Hero />
       <AboutPreview />
       <FeaturedCourses />

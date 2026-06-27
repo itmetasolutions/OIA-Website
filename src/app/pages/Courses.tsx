@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router"
 import { ArrowRight, Search } from "lucide-react"
-import { IslamicPattern, Reveal, PageHero, COURSES, CTASection, titleToSlug } from "../shared"
+import { IslamicPattern, Reveal, PageHero, COURSES, CTASection, titleToSlug, SEO } from "../shared"
 
 const LEVELS = ["All Levels", "Beginner", "Intermediate", "Advanced"]
 
@@ -17,6 +17,12 @@ export default function Courses() {
 
   return (
     <>
+      <SEO
+        title="All Islamic Courses — Quran, Arabic, Hadith, Fiqh & More"
+        description="Browse 25+ online Islamic courses covering Quran recitation, Tajweed, Hifz, Arabic language, Hadith, Aqeedah, Fiqh, Seerah and more. All levels. Taught by qualified scholars."
+        keywords="Islamic courses online, Quran recitation course, Tajweed online, learn Arabic online, Hadith course, Aqeedah course, Fiqh online, Islamic jurisprudence, Seerah course, Hifz programme online"
+        canonical="/courses"
+      />
       <PageHero
         badge="Our Curriculum"
         title={<>All <span className="text-primary italic">Courses</span></>}
@@ -73,7 +79,7 @@ export default function Courses() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {filtered.map(({ title, desc, level: lvl, duration }, i) => (
                 <Reveal key={title} delay={(i % 4) * 0.06}>
                   <div className="group h-full bg-card border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/28 hover:shadow-2xl hover:shadow-primary/7 hover:-translate-y-1.5 transition-all duration-300">
@@ -138,10 +144,10 @@ export default function Courses() {
               Our advisors are happy to guide you to the perfect course for your level, goals, and schedule. Reach out anytime.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-7 py-3.5 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all">
                 Talk to an Advisor <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/enroll" className="inline-flex items-center gap-2 text-primary font-bold px-7 py-3.5 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
+              <Link to="/enroll" className="inline-flex items-center gap-2 text-primary font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full border border-primary/25 hover:bg-primary/6 transition-all">
                 Enroll Now
               </Link>
             </div>
