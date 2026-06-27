@@ -12,7 +12,7 @@ import {
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[30px] pb-[30px] sm:pb-0">
+    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[98px] sm:pt-[30px] pb-[30px] sm:pb-0">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/50 to-background" />
       <IslamicPattern color="#0A7A58" opacity={0.055} />
       <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/6 blur-3xl" />
