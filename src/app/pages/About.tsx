@@ -309,10 +309,10 @@ export default function About() {
         canonical="/about"
       />
       <PageHero
-        badge="Open Islamic Academy"
+        badge="Open Islamic Academy" crumb="About Us"
         title={<>About <span className="text-primary italic">Our Academy</span></>}
         subtitle="Dedicated to authentic Islamic education since 2018 — serving students across 30+ countries with structured, scholar-led online courses."
-        photo="photo-1481627834876-b7833e8f5570"
+        photo="/Images/About Us/A Legacy of Authentic Learning.webp"
       />
       <OurStory />
       <MissionVision />

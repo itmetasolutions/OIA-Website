@@ -222,6 +222,8 @@ export default function Enroll() {
   return (
     <>
       <PageHero
+        crumb="Enroll"
+        photo="/Images/About Us/Making Islamic Knowledge Accessible.webp"
         badge={course ? course.title : "Open Islamic Academy"}
         title={course
           ? <><span className="text-primary italic">Enroll</span> in {course.title}</>

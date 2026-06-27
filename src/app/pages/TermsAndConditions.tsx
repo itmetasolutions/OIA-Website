@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import { IslamicPattern, Reveal, SEO } from "../shared"
 
 const SECTIONS = [
@@ -70,6 +71,11 @@ export default function TermsAndConditions() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/6 to-transparent" />
         <div className="relative max-w-4xl mx-auto px-5 lg:px-8 text-center">
           <Reveal>
+            <nav className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground mb-6">
+              <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+              <span className="text-muted-foreground/50">›</span>
+              <span className="text-foreground font-medium">Terms & Conditions</span>
+            </nav>
             <span className="text-xs font-bold tracking-[0.18em] uppercase text-primary">Legal</span>
             <h1 className="mt-3 text-4xl lg:text-5xl font-bold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
               Terms & <span className="text-primary italic">Conditions</span>

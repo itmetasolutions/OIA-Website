@@ -17,6 +17,9 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
 
+  const isHome = pathname === "/"
+  const transparent = isHome && !scrolled
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 44)
     window.addEventListener("scroll", fn)
@@ -34,7 +37,9 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
   return (
     <>
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-card/90 backdrop-blur-2xl shadow-sm border-b border-border" : "bg-transparent"
+        transparent
+          ? "bg-transparent"
+          : "bg-card/95 backdrop-blur-2xl shadow-sm border-b border-border"
       }`}>
         <nav className="max-w-7xl mx-auto px-5 lg:px-8 h-[68px] flex items-center justify-between gap-6">
           <Link to="/" className="flex items-center gap-3">

@@ -182,10 +182,10 @@ export default function Contact() {
         canonical="/contact"
       />
       <PageHero
-        badge="Contact Us"
+        badge="Contact Us" crumb="Contact"
         title={<>We would Love to <span className="text-primary italic">Hear From You</span></>}
         subtitle="Have a question about our courses, pricing, or anything else? Our team is here to help. Reach out and we will respond within 24 hours."
-        photo="photo-1585036401990-e3e49d0f1e85"
+        photo="/Images/About Us/Community.webp"
       />
       <ContactForm />
       <FAQ />

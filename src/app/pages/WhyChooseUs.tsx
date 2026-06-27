@@ -167,10 +167,10 @@ export default function WhyChooseUs() {
         canonical="/why-choose-us"
       />
       <PageHero
-        badge="Why Choose Us"
+        badge="Why Choose Us" crumb="Why Choose Us"
         title={<>The Open Islamic Academy <span className="text-primary italic">Difference</span></>}
         subtitle="We combine the rigour of traditional Islamic scholarship with the accessibility of modern online learning — so you never have to compromise on quality or convenience."
-        photo="photo-1522202176988-66273c2fd55f"
+        photo="/Images/Why Choose/Authentic Islamic Knowledge.webp"
       />
       <AlternatingSections />
       <Comparison />

@@ -211,16 +211,23 @@ export function CTASection({ title, subtitle }: { title: React.ReactNode; subtit
   )
 }
 
-export function PageHero({ badge, title, subtitle, photo }: { badge: string; title: React.ReactNode; subtitle: string; photo?: string }) {
+export function PageHero({ badge, title, subtitle, photo, crumb }: { badge: string; title: React.ReactNode; subtitle: string; photo?: string; crumb?: string }) {
   return (
     <section className="relative pt-[68px] overflow-hidden">
       {photo ? (
         <div className="relative h-[420px] lg:h-[500px]">
-          <img src={`https://images.unsplash.com/${photo}?auto=format&fit=crop&w=1600&h=600&q=80`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <img src={photo.startsWith("/") || photo.startsWith("http") ? photo : `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=1600&h=600&q=80`} alt="" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(12,27,46,0.88) 0%, rgba(10,122,88,0.55) 100%)" }} />
           <IslamicPattern color="#C9A454" opacity={0.04} />
           <div className="relative h-full flex items-center">
             <div className="max-w-7xl mx-auto px-5 lg:px-8 w-full">
+              {crumb && (
+                <nav className="flex items-center gap-1.5 text-xs text-white/55 mb-6">
+                  <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                  <span className="text-white/40">›</span>
+                  <span className="text-white/90 font-medium">{crumb}</span>
+                </nav>
+              )}
               <HeroContent badge={badge} title={title} subtitle={subtitle} light />
             </div>
           </div>
@@ -229,6 +236,13 @@ export function PageHero({ badge, title, subtitle, photo }: { badge: string; tit
         <div className="relative py-24 lg:py-32" style={{ background: "linear-gradient(135deg, #0C1B2E 0%, #0A1F38 60%, #065A42 100%)" }}>
           <IslamicPattern color="#C9A454" opacity={0.04} />
           <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
+            {crumb && (
+              <nav className="flex items-center gap-1.5 text-xs text-white/55 mb-6">
+                <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                <span className="text-white/40">›</span>
+                <span className="text-white/90 font-medium">{crumb}</span>
+              </nav>
+            )}
             <HeroContent badge={badge} title={title} subtitle={subtitle} light />
           </div>
         </div>

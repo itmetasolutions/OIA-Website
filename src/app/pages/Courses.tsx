@@ -24,10 +24,10 @@ export default function Courses() {
         canonical="/courses"
       />
       <PageHero
-        badge="Our Curriculum"
+        badge="Our Curriculum" crumb="Courses"
         title={<>All <span className="text-primary italic">Courses</span></>}
         subtitle="Explore our full catalogue of Islamic courses — from foundational Quran recitation to advanced Islamic sciences. Every course is taught by qualified scholars."
-        photo="photo-1481627834876-b7833e8f5570"
+        photo="/Images/About Us/Quran Studies.webp"
       />
 
       {/* Filter Bar */}

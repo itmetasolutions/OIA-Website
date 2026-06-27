@@ -17,20 +17,7 @@ function getCourseDetail(slug: string) {
   return { course, detail }
 }
 
-// ─── Breadcrumb ───────────────────────────────────────────────────────────────
-function Breadcrumb({ title }: { title: string }) {
-  return (
-    <nav className="bg-card border-b border-border px-5 lg:px-8">
-      <div className="max-w-7xl mx-auto py-3 flex items-center gap-2 text-xs text-muted-foreground">
-        <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-        <ChevronRight className="w-3 h-3" />
-        <Link to="/courses" className="hover:text-primary transition-colors">Courses</Link>
-        <ChevronRight className="w-3 h-3" />
-        <span className="text-foreground font-medium truncate max-w-[200px]">{title}</span>
-      </div>
-    </nav>
-  )
-}
+
 
 // ─── Course Hero ──────────────────────────────────────────────────────────────
 function CourseHero({ title, desc, level, duration, photo }: {
@@ -59,6 +46,14 @@ function CourseHero({ title, desc, level, duration, photo }: {
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8 pb-14 pt-24 w-full">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
+          {/* Breadcrumb inside banner */}
+          <nav className="flex items-center gap-1.5 text-xs text-white/60 mb-6">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3" />
+            <Link to="/courses" className="hover:text-white transition-colors">Courses</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-white/90 font-medium truncate max-w-[220px]">{title}</span>
+          </nav>
           <div className="flex flex-wrap gap-2 mb-4">
             <span
               className="text-xs font-bold px-3 py-1.5 rounded-full"
@@ -297,7 +292,6 @@ export default function CourseDetail() {
         ogImage={`https://openislamicacademy.com/Images/Courses Images/${detail.photo}.webp`}
         schema={courseSchema}
       />
-      <Breadcrumb title={course.title} />
       <CourseHero
         title={course.title}
         desc={course.desc}
