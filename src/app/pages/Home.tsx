@@ -12,13 +12,13 @@ import {
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-[30px]">
+    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[30px] pb-[30px] sm:pb-0">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/50 to-background" />
       <IslamicPattern color="#0A7A58" opacity={0.055} />
       <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/6 blur-3xl" />
       <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-accent/8 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-5 lg:px-8 w-full py-16">
+      <div className="relative max-w-7xl mx-auto px-5 lg:px-8 w-full py-0 sm:py-16">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* Text */}
           <div className="flex flex-col gap-5">
