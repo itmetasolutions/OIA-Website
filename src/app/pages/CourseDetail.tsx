@@ -258,6 +258,22 @@ export default function CourseDetail() {
   const { slug = "" } = useParams<{ slug: string }>()
   const { course, detail } = getCourseDetail(slug)
 
+  const courseSchema = course && detail ? {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": course.title,
+    "description": detail.longDesc,
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Open Islamic Academy",
+      "sameAs": "https://openislamicacademy.com"
+    },
+    "educationalLevel": course.level,
+    "timeRequired": course.duration,
+    "inLanguage": detail.language,
+    "url": `https://openislamicacademy.com/courses/${slug}`
+  } : undefined
+
   if (!course) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-center px-5">
