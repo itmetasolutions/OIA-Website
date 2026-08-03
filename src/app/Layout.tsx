@@ -3,6 +3,8 @@ import { Outlet, useLocation, Link } from "react-router"
 import { BookOpen, Phone } from "lucide-react"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import FloatingPopupMenu from "./components/FloatingPopupMenu"
+import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton"
 
 function MobileBottomBar() {
   return (
@@ -44,6 +46,8 @@ export default function Layout() {
       <Navbar dark={dark} setDark={setDark} />
       <Outlet />
       <Footer />
+      <FloatingPopupMenu />
+      <FloatingWhatsAppButton />
       <MobileBottomBar />
     </div>
   )

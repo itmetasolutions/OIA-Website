@@ -134,16 +134,20 @@ export function useCounter(end: number, duration = 2000, active = false) {
   return count
 }
 
-export function StatCell({ value, suffix, label }: { value: number; suffix: string; label: string }) {
+export function StatCell({ value, suffix, label }: { value?: number; suffix: string; label: string }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-50px" })
-  const count = useCounter(value, 2400, inView)
+  const count = useCounter(value ?? 0, 2400, inView)
   return (
     <div ref={ref} className="flex flex-col items-center text-center gap-2 py-8 px-4">
-      <div className="text-5xl lg:text-6xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-        {count}{suffix}
-      </div>
-      <div className="text-sm font-semibold text-white/60 tracking-wide" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{label}</div>
+      {value === undefined ? (
+        <div className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{label}</div>
+      ) : (
+        <>
+          <div className="text-5xl lg:text-6xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{count}{suffix}</div>
+          <div className="text-sm font-semibold text-white/60 tracking-wide" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{label}</div>
+        </>
+      )}
     </div>
   )
 }
@@ -213,7 +217,7 @@ export function CTASection({ title, subtitle }: { title: React.ReactNode; subtit
 
 export function PageHero({ badge, title, subtitle, photo, crumb }: { badge: string; title: React.ReactNode; subtitle: string; photo?: string; crumb?: string }) {
   return (
-    <section className="relative pt-[68px] overflow-hidden">
+    <section className="relative pt-[100px] overflow-hidden">
       {photo ? (
         <div className="relative h-[420px] lg:h-[500px]">
           <img src={photo.startsWith("/") || photo.startsWith("http") ? photo : `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=1600&h=600&q=80`} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -278,26 +282,26 @@ function HeroContent({ badge, title, subtitle, light }: { badge: string; title: 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 export const COURSES = [
-  { Icon: BookOpen,      title: "Quran Reading & Pronunciation",              desc: "Master Tajweed rules and recite with precise, beautiful articulation.",      level: "Beginner",     duration: "3 months"  },
-  { Icon: Star,          title: "Quran Memorization (Hifz-ul-Quran)",         desc: "Systematic Hifz programme with expert supervision and proven methods.",     level: "All Levels",   duration: "1-3 years" },
-  { Icon: Bookmark,      title: "Essential Surahs Memorization",              desc: "Memorize key Surahs for daily salah and a stronger spiritual routine.",      level: "Beginner",     duration: "2 months"  },
-  { Icon: Eye,           title: "Understanding Quran Through Translation",    desc: "Grasp every verse with clear, modern-language translation.",                level: "Beginner",     duration: "4 months"  },
-  { Icon: FileText,      title: "Word-to-Word Quran Translation",             desc: "Build Quranic vocabulary by studying each Arabic word directly.",           level: "Intermediate", duration: "6 months"  },
-  { Icon: Layers,        title: "Quranic Tafseer & Explanation",              desc: "Explore the deeper meanings and contexts behind Quranic verses.",           level: "Intermediate", duration: "1 year"    },
-  { Icon: Search,        title: "Hadith & Sunnah Studies",                   desc: "Study authenticated hadith collections and the Prophet's noble way.",       level: "Intermediate", duration: "6 months"  },
-  { Icon: Shield,        title: "Fundamentals of Islamic Beliefs",           desc: "Solid grounding in Aqeedah — core tenets every Muslim must know.",         level: "Beginner",     duration: "3 months"  },
-  { Icon: ShieldCheck,   title: "Detailed Islamic Beliefs (Aqeedah)",        desc: "In-depth theology and rational proofs for Islamic beliefs.",                level: "Advanced",     duration: "8 months"  },
-  { Icon: Heart,         title: "Islamic Etiquette & Manners",               desc: "Cultivate refined character through authentic Islamic adab.",               level: "Beginner",     duration: "2 months"  },
-  { Icon: Compass,       title: "Five Pillars of Islam",                     desc: "Comprehensive study of Shahada, Salah, Zakat, Sawm, and Hajj.",            level: "Beginner",     duration: "4 months"  },
-  { Icon: GraduationCap, title: "Dars-e-Nizami",                             desc: "The traditional Islamic seminary curriculum for advanced seekers.",         level: "Advanced",     duration: "2-3 years" },
-  { Icon: Globe,         title: "Islamic Sharia",                            desc: "Islamic law, its sources, principles, and contemporary relevance.",         level: "Advanced",     duration: "1 year"    },
-  { Icon: Award,         title: "Finality of Prophethood (Khatm-e-Nabuwwat)", desc: "Scholarly proof and detailed study of the seal of prophethood.",         level: "Advanced",     duration: "5 months"  },
-  { Icon: Feather,       title: "Arabic Language",                           desc: "Learn classical and modern Arabic from beginner to proficiency.",           level: "All Levels",   duration: "6 months"  },
-  { Icon: BookOpen,      title: "Islamic Jurisprudence (Fiqh)",              desc: "Practical rulings on worship, transactions, and daily Muslim life.",        level: "Intermediate", duration: "8 months"  },
-  { Icon: Lightbulb,     title: "Islamic Philosophy & Theology",             desc: "Rational proofs for Islamic beliefs and classical kalam sciences.",         level: "Advanced",     duration: "1 year"    },
-  { Icon: Bookmark,      title: "Stories of the Prophets",                   desc: "Timeless wisdom from the lives of all Prophets in the Quran.",             level: "Beginner",     duration: "4 months"  },
-  { Icon: Feather,       title: "Biography of Prophet Muhammad ﷺ",          desc: "The complete Seerah — his life, character, and eternal legacy.",           level: "All Levels",   duration: "6 months"  },
-  { Icon: Search,        title: "Critical Study of Liberal Ideologies",      desc: "Islamic scholarly responses to modern secular and liberal thought.",       level: "Advanced",     duration: "5 months"  },
+  { Icon: BookOpen,      title: "Quran Reading & Pronunciation",              urdu: "ناظرہ قرآن", desc: "Master Tajweed rules and recite with precise, beautiful articulation.",      level: "Beginner",     duration: "3 months"  },
+  { Icon: Star,          title: "Quran Memorization (Hifz-ul-Quran)",         urdu: "حفظِ قرآن", desc: "Systematic Hifz programme with expert supervision and proven methods.",     level: "All Levels",   duration: "1-3 years" },
+  { Icon: Bookmark,      title: "Essential Surahs Memorization",              urdu: "منتخب سورتوں کی یادداشت", desc: "Memorize key Surahs for daily salah and a stronger spiritual routine.",      level: "Beginner",     duration: "2 months"  },
+  { Icon: Eye,           title: "Understanding Quran Through Translation",    urdu: "ترجمۂ القرآن", desc: "Grasp every verse with clear, modern-language translation.",                level: "Beginner",     duration: "4 months"  },
+  { Icon: FileText,      title: "Word-to-Word Quran Translation",             urdu: "لفظ بہ لفظ ترجمۂ قرآن", desc: "Build Quranic vocabulary by studying each Arabic word directly.",           level: "Intermediate", duration: "6 months"  },
+  { Icon: Layers,        title: "Quranic Tafseer & Explanation",              urdu: "تفسیر القرآن", desc: "Explore the deeper meanings and contexts behind Quranic verses.",           level: "Intermediate", duration: "1 year"    },
+  { Icon: Search,        title: "Hadith & Sunnah Studies",                   urdu: "حدیث کورس", desc: "Study authenticated hadith collections and the Prophet's noble way.",       level: "Intermediate", duration: "6 months"  },
+  { Icon: Shield,        title: "Fundamentals of Islamic Beliefs",           urdu: "عقائد کورس", desc: "Solid grounding in Aqeedah — core tenets every Muslim must know.",         level: "Beginner",     duration: "3 months"  },
+  { Icon: ShieldCheck,   title: "Detailed Islamic Beliefs (Aqeedah)",        urdu: "عقائد کورس (تفصیلی)", desc: "In-depth theology and rational proofs for Islamic beliefs.",                level: "Advanced",     duration: "8 months"  },
+  { Icon: Heart,         title: "Islamic Etiquette & Manners",               urdu: "آدابِ زندگی", desc: "Cultivate refined character through authentic Islamic adab.",               level: "Beginner",     duration: "2 months"  },
+  { Icon: Compass,       title: "Five Pillars of Islam",                     urdu: "ارکانِ اسلام", desc: "Comprehensive study of Shahada, Salah, Zakat, Sawm, and Hajj.",            level: "Beginner",     duration: "4 months"  },
+  { Icon: GraduationCap, title: "Dars-e-Nizami",                             urdu: "درسِ نظامی", desc: "The traditional Islamic seminary curriculum for advanced seekers.",         level: "Advanced",     duration: "2-3 years" },
+  { Icon: Globe,         title: "Islamic Sharia",                            urdu: "اسلامی شریعت", desc: "Islamic law, its sources, principles, and contemporary relevance.",         level: "Advanced",     duration: "1 year"    },
+  { Icon: Award,         title: "Finality of Prophethood (Khatm-e-Nabuwwat)", urdu: "عقیدہ ختمِ نبوت", desc: "Scholarly proof and detailed study of the seal of prophethood.",         level: "Advanced",     duration: "5 months"  },
+  { Icon: Feather,       title: "Arabic Language",                           urdu: "عربی زبان", desc: "Learn classical and modern Arabic from beginner to proficiency.",           level: "All Levels",   duration: "6 months"  },
+  { Icon: BookOpen,      title: "Islamic Jurisprudence (Fiqh)",              urdu: "بنیادی فقہ کورس", desc: "Practical rulings on worship, transactions, and daily Muslim life.",        level: "Intermediate", duration: "8 months"  },
+  { Icon: Lightbulb,     title: "Islamic Philosophy & Theology",             urdu: "اسلامی فلسفہ و علم الکلام", desc: "Rational proofs for Islamic beliefs and classical kalam sciences.",         level: "Advanced",     duration: "1 year"    },
+  { Icon: Bookmark,      title: "Stories of the Prophets",                   urdu: "انبیاء کے واقعات", desc: "Timeless wisdom from the lives of all Prophets in the Quran.",             level: "Beginner",     duration: "4 months"  },
+  { Icon: Feather,       title: "Biography of Prophet Muhammad ﷺ",          urdu: "سیرت کورس", desc: "The complete Seerah — his life, character, and eternal legacy.",           level: "All Levels",   duration: "6 months"  },
+  { Icon: Search,        title: "Critical Study of Liberal Ideologies",      urdu: "لبرل نظریات کا تنقیدی مطالعہ", desc: "Islamic scholarly responses to modern secular and liberal thought.",       level: "Advanced",     duration: "5 months"  },
 ]
 
 export const WHY = [
@@ -305,9 +309,10 @@ export const WHY = [
   { Icon: GraduationCap, title: "Qualified Scholars",           desc: "Learn directly from certified, experienced Islamic scholars from around the world.",            photo: "photo-1522202176988-66273c2fd55f" },
   { Icon: Layers,        title: "Structured Curriculum",        desc: "Purposefully designed learning pathways from beginner to advanced levels.",                     photo: "photo-1434030216411-0b793f4b4173" },
   { Icon: Users,         title: "Interactive Online Classes",   desc: "Live sessions, Q&A discussions, and peer learning for a truly rich experience.",                photo: "photo-1516321318423-f06f85e504b3" },
-  { Icon: Heart,         title: "Affordable Learning",          desc: "Premium Islamic education made accessible to every background and budget worldwide.",           photo: "photo-1564769662533-4f00a87b4056" },
+  { Icon: ShieldCheck,   title: "Female Staff Available",       desc: "Female students can learn with dedicated female staff in a comfortable, supportive environment.", image: "/Images/Why Choose/Female Staff Available.png" },
+  { Icon: Heart,         title: "Affordable Learning",          desc: "Premium Islamic education made accessible to every background and budget worldwide.",           image: "/Images/Why Choose/Affordable Learning New.png" },
   { Icon: Award,         title: "Certificate Upon Completion",  desc: "Earn accredited certificates recognised by Islamic institutions globally.",                    photo: "photo-1523050854058-8df90110c9f1" },
-  { Icon: Lightbulb,     title: "Dedicated Student Support",    desc: "Dedicated mentors and advisors guide you through every step of your learning journey.",        photo: "photo-1543269865-cbf427effbad" },
+  { Icon: Lightbulb,     title: "Dedicated Student Support",    desc: "Dedicated mentors and advisors guide you through every step of your learning journey.",        image: "/Images/Why Choose/Dedicated Student Support New.png" },
   { Icon: Bookmark,      title: "Lifetime Learning Resources",  desc: "Access recorded lectures, notes, and references anytime, from anywhere, forever.",             photo: "photo-1481627834876-b7833e8f5570" },
 ]
 
@@ -328,7 +333,7 @@ export const STEPS = [
 ]
 
 export const STATS = [
-  { value: 5000, suffix: "+", label: "Students Worldwide" },
+  { value: undefined, suffix: "", label: "Global Students" },
   { value: 25,   suffix: "+", label: "Professional Courses" },
   { value: 20,   suffix: "+", label: "Qualified Teachers" },
   { value: 95,   suffix: "%", label: "Student Satisfaction" },

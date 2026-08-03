@@ -3,8 +3,8 @@ import { ArrowRight } from "lucide-react"
 import { IslamicPattern, Reveal, PageHero, WHY, STEPS, StatsBar, CTASection, SEO } from "../shared"
 
 // ─── Alternating Feature Rows ─────────────────────────────────────────────────
-function FeatureRow({ Icon, title, desc, flip, index }: {
-  Icon: React.ElementType; title: string; desc: string; photo?: string; flip: boolean; index: number
+function FeatureRow({ Icon, title, desc, image, flip, index }: {
+  Icon: React.ElementType; title: string; desc: string; photo?: string; image?: string; flip: boolean; index: number
 }) {
   return (
     <Reveal delay={0.05}>
@@ -30,7 +30,7 @@ function FeatureRow({ Icon, title, desc, flip, index }: {
         <div className="relative h-full">
           <div className="rounded-3xl overflow-hidden shadow-2xl h-full">
             <img
-              src={`/Images/Why Choose/${title}.webp`}
+              src={image ?? `/Images/Why Choose/${title}.webp`}
               alt={title}
               className="w-full h-full object-cover"
               style={{ minHeight: 280 }}
@@ -162,7 +162,7 @@ export default function WhyChooseUs() {
     <>
       <SEO
         title="Why Choose Open Islamic Academy for Online Islamic Learning"
-        description="Discover why 5,000+ students trust Open Islamic Academy — qualified scholars, structured curriculum, live classes, accredited certificates, affordable pricing and lifetime access."
+        description="Discover why global students trust Open Islamic Academy — qualified scholars, structured curriculum, live classes, accredited certificates, affordable pricing and lifetime access."
         keywords="why choose Islamic academy, best online Islamic school, qualified Islamic teachers, Islamic certificate online, structured Islamic curriculum, affordable Islamic education"
         canonical="/why-choose-us"
       />

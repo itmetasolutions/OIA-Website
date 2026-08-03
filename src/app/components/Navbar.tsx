@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router"
 import { motion, AnimatePresence } from "motion/react"
-import { Menu, X, Moon, Sun, ChevronRight, ArrowRight, BookOpen } from "lucide-react"
+import { Menu, X, Moon, Sun, ChevronRight, ArrowRight, BookOpen, Calculator } from "lucide-react"
 import { LogoMark } from "../shared"
+import CourseFeeCalculator from "./CourseFeeCalculator"
 
 const NAV = [
   { label: "Home",          href: "/" },
@@ -15,6 +16,7 @@ const NAV = [
 export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [calculatorOpen, setCalculatorOpen] = useState(false)
   const { pathname } = useLocation()
 
   const isHome = pathname === "/"
@@ -36,7 +38,14 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      <div
+        className="fixed inset-x-0 top-0 z-50 flex h-8 items-center justify-center bg-primary px-4 text-center text-xs font-bold tracking-[0.12em] text-primary-foreground shadow-sm"
+        role="status"
+        aria-label="3 Days Trial"
+      >
+        3 Days Trial
+      </div>
+      <header className={`fixed inset-x-0 top-8 z-50 transition-all duration-500 ${
         transparent
           ? "bg-transparent"
           : "bg-card/95 backdrop-blur-2xl shadow-sm border-b border-border"
@@ -75,6 +84,19 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
             >
               Enroll Now <ChevronRight className="w-3.5 h-3.5" />
             </Link>
+            {isHome && (
+              <button
+                type="button"
+                onClick={() => setCalculatorOpen(true)}
+                className="group relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:h-10 md:w-10"
+                aria-label="Open course fee calculator"
+                title="Course Fee Calculator"
+              >
+                <span className="absolute inset-0 -z-10 rounded-full bg-primary/30 motion-safe:animate-ping" aria-hidden="true" />
+                <Calculator className="h-5 w-5" />
+                <span className="pointer-events-none absolute top-12 right-0 whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1 text-[10px] font-bold text-background opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Fee Calculator</span>
+              </button>
+            )}
             <button
               className="lg:hidden w-9 h-9 flex items-center justify-center text-foreground"
               onClick={() => setOpen(true)}
@@ -171,6 +193,7 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
           </>
         )}
       </AnimatePresence>
+      <CourseFeeCalculator open={calculatorOpen} onClose={() => setCalculatorOpen(false)} />
     </>
   )
 }

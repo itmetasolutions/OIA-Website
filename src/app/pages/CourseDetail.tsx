@@ -20,8 +20,8 @@ function getCourseDetail(slug: string) {
 
 
 // ─── Course Hero ──────────────────────────────────────────────────────────────
-function CourseHero({ title, desc, level, duration, photo }: {
-  title: string; desc: string; level: string; duration: string; photo?: string
+function CourseHero({ title, urdu, desc, level, duration, photo }: {
+  title: string; urdu: string; desc: string; level: string; duration: string; photo?: string
 }) {
   const LEVEL_COLOR: Record<string, string> = {
     Beginner: "#0A7A58",
@@ -66,12 +66,17 @@ function CourseHero({ title, desc, level, duration, photo }: {
             </span>
           </div>
 
-          <h1
-            className="text-4xl lg:text-6xl font-bold text-white max-w-3xl leading-tight mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            {title}
-          </h1>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-10 mb-5">
+            <h1
+              className="text-4xl lg:text-6xl font-bold text-white max-w-3xl leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {title}
+            </h1>
+            <p lang="ur" dir="rtl" className="shrink-0 text-3xl lg:text-5xl font-semibold text-accent leading-relaxed sm:text-right" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif" }}>
+              {urdu}
+            </p>
+          </div>
           <p
             className="text-white/75 text-lg max-w-2xl leading-relaxed"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -90,7 +95,7 @@ function CourseHero({ title, desc, level, duration, photo }: {
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-accent" />
-              <span>5,000+ students</span>
+              <span className="font-semibold">Global Students</span>
             </div>
             <div className="flex items-center gap-2">
               <Award className="w-4 h-4 text-accent" />
@@ -153,7 +158,7 @@ function EnrollSidebar({ title, level, duration, language, hoursPerWeek }: {
   title: string; level: string; duration: string; language: string; hoursPerWeek: string
 }) {
   return (
-    <div className="sticky top-24 bg-card border border-border rounded-3xl overflow-hidden shadow-2xl">
+    <div className="sticky top-32 bg-card border border-border rounded-3xl overflow-hidden shadow-2xl">
       <div className="p-6 border-b border-border bg-primary/6">
         <div className="text-2xl font-bold text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
           Register Free
@@ -211,7 +216,7 @@ function RelatedCourses({ currentTitle }: { currentTitle: string }) {
           </h2>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {related.map(({ title, desc, level, duration }, i) => (
+          {related.map(({ title, urdu, desc, level, duration }, i) => (
             <Reveal key={title} delay={i * 0.08}>
               <Link
                 to={`/courses/${titleToSlug(title)}`}
@@ -228,6 +233,7 @@ function RelatedCourses({ currentTitle }: { currentTitle: string }) {
                   <h3 className="font-bold text-foreground text-sm mb-2 line-clamp-2 leading-snug" style={{ fontFamily: "'Playfair Display', serif" }}>
                     {title}
                   </h3>
+                  <p lang="ur" dir="rtl" className="text-base font-semibold text-primary mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif" }}>{urdu}</p>
                   <p className="text-xs text-muted-foreground line-clamp-2 mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{desc}</p>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span>{level}</span>
@@ -294,6 +300,7 @@ export default function CourseDetail() {
       />
       <CourseHero
         title={course.title}
+        urdu={course.urdu}
         desc={course.desc}
         level={course.level}
         duration={course.duration}

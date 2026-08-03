@@ -10,7 +10,7 @@ export default function Courses() {
   const [level, setLevel] = useState("All Levels")
 
   const filtered = COURSES.filter((c) => {
-    const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) || c.desc.toLowerCase().includes(search.toLowerCase())
+    const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) || c.urdu.includes(search) || c.desc.toLowerCase().includes(search.toLowerCase())
     const matchLevel  = level === "All Levels" || c.level === level || c.level === "All Levels"
     return matchSearch && matchLevel
   })
@@ -31,7 +31,7 @@ export default function Courses() {
       />
 
       {/* Filter Bar */}
-      <section className="py-10 bg-card border-b border-border sticky top-[68px] z-40 backdrop-blur-xl bg-card/90">
+      <section className="py-10 bg-card border-b border-border sticky top-[100px] z-40 backdrop-blur-xl bg-card/90">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="relative w-full sm:w-80">
@@ -80,7 +80,7 @@ export default function Courses() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {filtered.map(({ title, desc, level: lvl, duration }, i) => (
+              {filtered.map(({ title, urdu, desc, level: lvl, duration }, i) => (
                 <Reveal key={title} delay={(i % 4) * 0.06}>
                   <div className="group h-full bg-card border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/28 hover:shadow-2xl hover:shadow-primary/7 hover:-translate-y-1.5 transition-all duration-300">
                     {/* Image */}
@@ -106,6 +106,7 @@ export default function Courses() {
 
                     <div className="flex flex-col gap-2 flex-1 px-4 pt-2 pb-2">
                       <h3 className="font-bold text-foreground text-sm leading-snug" style={{ fontFamily: "'Playfair Display', serif" }}>{title}</h3>
+                      <p lang="ur" dir="rtl" className="text-base font-semibold text-primary leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif" }}>{urdu}</p>
                       <p className="text-xs text-muted-foreground leading-relaxed flex-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{desc}</p>
                       <p className="text-xs text-primary font-semibold">Duration: {duration}</p>
                     </div>

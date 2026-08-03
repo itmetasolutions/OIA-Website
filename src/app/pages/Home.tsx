@@ -8,11 +8,12 @@ import {
 import {
   STAR_PATH, IslamicPattern, Reveal, COURSES, WHY, STEPS, StatsBar, CTASection, titleToSlug, SEO,
 } from "../shared"
+import ReviewsSection from "../components/ReviewsSection"
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[98px] sm:pt-[30px] pb-[30px] sm:pb-0">
+    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[130px] sm:pt-[62px] pb-[30px] sm:pb-0">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/50 to-background" />
       <IslamicPattern color="#0A7A58" opacity={0.055} />
       <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/6 blur-3xl" />
@@ -45,7 +46,7 @@ function Hero() {
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.52 }}
-              className="flex flex-row gap-3">
+              className="flex flex-row flex-wrap items-center gap-3">
               <Link to="/enroll"
                 className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold text-xs sm:text-sm px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full shadow-2xl shadow-primary/30 hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
                 Enroll Now <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -58,10 +59,10 @@ function Hero() {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85 }}
               className="flex items-center gap-8 pt-1">
-              {[["5000+", "Students"], ["25+", "Courses"], ["20+", "Scholars"]].map(([v, l]) => (
+              {[["", "Global Students"], ["25+", "Courses"], ["20+", "Scholars"]].map(([v, l]) => (
                 <div key={l} className="text-center">
-                  <div className="text-xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>
-                  <div className="text-xs text-muted-foreground font-semibold">{l}</div>
+                  {v && <div className="text-xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>}
+                  <div className={`${v ? "text-xs text-muted-foreground" : "text-base text-primary"} font-bold`}>{l}</div>
                 </div>
               ))}
             </motion.div>
@@ -94,8 +95,7 @@ function Hero() {
               </div>
               <motion.div animate={{ y: [0, -14, 0] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-5 -right-6 rounded-2xl px-4 py-3 shadow-2xl" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
-                <div className="text-2xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>5 000+</div>
-                <div className="text-xs text-muted-foreground font-semibold">Global Students</div>
+                <div className="text-lg font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>Global Students</div>
               </motion.div>
               <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute -bottom-5 -left-6 rounded-2xl px-4 py-3 shadow-2xl" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
@@ -143,10 +143,10 @@ function AboutPreview() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="flex gap-4 justify-center">
-                  {[["30+", "Countries"], ["5000+", "Students"]].map(([v, l]) => (
+                  {[["30+", "Countries"], ["", "Global Students"]].map(([v, l]) => (
                     <div key={l} className="bg-white/15 backdrop-blur rounded-xl px-4 py-3 text-center border border-white/20">
-                      <div className="text-lg font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>
-                      <div className="text-[10px] text-white/80 font-semibold">{l}</div>
+                      {v && <div className="text-lg font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>}
+                      <div className={`${v ? "text-[10px] text-white/80" : "text-base text-white"} font-bold`}>{l}</div>
                     </div>
                   ))}
                 </div>
@@ -195,8 +195,44 @@ function AboutPreview() {
 }
 
 // ─── Featured Courses ────────────────────────────────────────────────────────
+const FEATURED_COURSES = [
+  {
+    courseTitle: "Quran Reading & Pronunciation",
+    title: "Quran Nazra",
+    desc: "Learn to read the Holy Quran fluently with correct pronunciation and essential Tajweed rules.",
+  },
+  {
+    courseTitle: "Quran Memorization (Hifz-ul-Quran)",
+    title: "Hifz-ul-Quran",
+    desc: "Memorise the Holy Quran through a structured programme with expert supervision and regular revision.",
+  },
+  {
+    courseTitle: "Quranic Tafseer & Explanation",
+    title: "Quran Tafseer",
+    desc: "Study the meanings, context, and timeless guidance of Quranic verses through authentic Tafseer.",
+  },
+  {
+    courseTitle: "Hadith & Sunnah Studies",
+    title: "Hadith Studies",
+    desc: "Explore authenticated Hadith collections and understand the teachings and Sunnah of the Prophet ﷺ.",
+  },
+  {
+    courseTitle: "Five Pillars of Islam",
+    title: "Arkan-e-Islam",
+    desc: "Build a strong foundation in Shahada, Salah, Zakat, Sawm, and Hajj with practical guidance.",
+  },
+  {
+    courseTitle: "Dars-e-Nizami",
+    title: "Dars-e-Nizami",
+    desc: "Follow the traditional Islamic seminary curriculum designed for dedicated seekers of advanced knowledge.",
+  },
+]
+
 function FeaturedCourses() {
-  const shown = COURSES.slice(0, 6)
+  const shown = FEATURED_COURSES.map((featured) => ({
+    ...featured,
+    course: COURSES.find(({ title }) => title === featured.courseTitle)!,
+  }))
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "var(--secondary)" }}>
       <div className="absolute inset-0"><IslamicPattern color="#0A7A58" opacity={0.048} /></div>
@@ -212,24 +248,25 @@ function FeaturedCourses() {
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {shown.map(({ title, desc }, i) => (
+          {shown.map(({ title, desc, course }, i) => (
             <Reveal key={title} delay={(i % 3) * 0.07}>
               <div className="group h-full bg-card border border-border rounded-2xl overflow-hidden flex flex-col hover:border-primary/28 hover:shadow-2xl hover:shadow-primary/7 hover:-translate-y-1.5 transition-all duration-300">
                 <div className="overflow-hidden flex-shrink-0">
-                  <img src={`/Images/Courses Images/${title}.webp`} alt={title} loading="lazy"
+                  <img src={`/Images/Courses Images/${course.title}.webp`} alt={title} loading="lazy"
                     className="w-full h-auto block group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="h-1 w-full bg-gradient-to-r from-primary/60 via-accent/40 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="flex flex-col gap-2 flex-1 p-4">
                   <h3 className="font-bold text-foreground text-sm leading-snug" style={{ fontFamily: "'Playfair Display', serif" }}>{title}</h3>
+                  <p lang="ur" dir="rtl" className="text-base font-semibold text-primary leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif" }}>{course.urdu}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed flex-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{desc}</p>
                 </div>
                 <div className="flex items-center gap-2 px-4 pb-4">
-                  <Link to={`/enroll?course=${encodeURIComponent(title)}`}
+                  <Link to={`/enroll?course=${encodeURIComponent(course.title)}`}
                     className="inline-flex items-center justify-center bg-primary text-primary-foreground font-bold px-3 py-1.5 rounded-full text-xs shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all">
                     Enroll Now
                   </Link>
-                  <Link to={`/courses/${titleToSlug(title)}`}
+                  <Link to={`/courses/${titleToSlug(course.title)}`}
                     className="inline-flex items-center justify-center bg-card text-foreground font-bold px-3 py-1.5 rounded-full border border-border text-xs hover:border-primary/30 transition-all">
                     See Details
                   </Link>
@@ -342,7 +379,7 @@ export default function Home() {
     <>
       <SEO
         title="Authentic Online Islamic Education"
-        description="Join 5,000+ students learning Quran, Tajweed, Arabic, Hadith, Aqeedah and Islamic sciences online with qualified scholars. Enroll in 25+ structured courses today."
+        description="Join global students learning Quran, Tajweed, Arabic, Hadith, Aqeedah and Islamic sciences online with qualified scholars. Enroll in 25+ structured courses today."
         keywords="online Islamic education, Quran classes online, learn Quran with Tajweed, Islamic courses online, Arabic language online, Hadith studies, Islamic academy online, learn Islam"
         canonical="/"
         schema={homeSchema}
@@ -351,6 +388,7 @@ export default function Home() {
       <AboutPreview />
       <FeaturedCourses />
       <WhyPreview />
+      <ReviewsSection />
       <Process />
       <StatsBar />
       <CTASection

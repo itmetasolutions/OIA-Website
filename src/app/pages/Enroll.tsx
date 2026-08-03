@@ -6,7 +6,35 @@ import { IslamicPattern, Reveal, PageHero, COURSES, TESTI, CTASection, STAR_PATH
 const SCHEDULES  = ["Morning (6 AM – 12 PM)", "Afternoon (12 PM – 6 PM)", "Evening (6 PM – 10 PM)", "Flexible / Recorded Only"]
 const COUNTRIES  = ["United States", "United Kingdom", "Pakistan", "Saudi Arabia", "UAE", "Canada", "Australia", "India", "Egypt", "Turkey", "Other"]
 
-function EnrollForm({ preselected }: { preselected: string }) {
+function CalculatorPackageSummary({ params }: { params: URLSearchParams }) {
+  const details = [
+    ["Selected Course", params.get("course") || "—"],
+    ["Course Price", `$${params.get("pricePerClass") || "0.00"} per 30-minute weekday class`],
+    ["Weekend Price", `$${params.get("weekendPrice") || "0.00"} per 30-minute class`],
+    ["Class Duration", `${params.get("duration") || "30"} Minutes`],
+    ["Weekly Classes", params.get("weeklyClasses") || "1"],
+    ["Selected Days", (params.get("days") || "").split(",").join(", ")],
+    ["Weekly Cost", `$${params.get("weeklyCost") || "0.00"}`],
+  ]
+
+  return (
+    <div className="mb-8 overflow-hidden rounded-2xl border border-primary/20 bg-primary/5">
+      <div className="flex items-center gap-3 border-b border-primary/15 px-5 py-4">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white"><Clock className="h-5 w-5" /></div>
+        <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">Calculator Selection</p><h3 className="font-bold text-foreground">Confirm Your Learning Package</h3></div>
+      </div>
+      <div className="grid gap-x-6 gap-y-4 p-5 sm:grid-cols-2">
+        {details.map(([label, value]) => <div key={label}><p className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">{label}</p><p className="mt-1 text-sm font-semibold text-foreground">{value}</p></div>)}
+      </div>
+      <div className="flex items-end justify-between gap-4 bg-primary px-5 py-4 text-white">
+        <div><p className="text-xs text-white/70">Total Estimated Package</p><p className="text-[10px] text-white/55">Four-week estimate</p></div>
+        <strong className="text-3xl" style={{ fontFamily: "'Playfair Display', serif" }}>${params.get("totalPrice") || "0.00"}</strong>
+      </div>
+    </div>
+  )
+}
+
+function EnrollForm({ preselected, lockCourse = false }: { preselected: string; lockCourse?: boolean }) {
   const [form, setForm] = useState({
     name: "", email: "", phone: "", country: "",
     course: preselected || "", level: "", schedule: "", message: "",
@@ -52,8 +80,8 @@ function EnrollForm({ preselected }: { preselected: string }) {
       {/* Course Selection */}
       <div>
         <label className="text-xs font-bold text-foreground uppercase tracking-wide mb-1.5 block">Select Course *</label>
-        <select required value={form.course} onChange={(e) => set("course", e.target.value)}
-          className="w-full px-4 py-3.5 rounded-xl border border-border bg-card text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all">
+        <select required disabled={lockCourse} value={form.course} onChange={(e) => set("course", e.target.value)}
+          className="w-full px-4 py-3.5 rounded-xl border border-border bg-card text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all disabled:cursor-not-allowed disabled:opacity-70">
           <option value="">— Choose a course —</option>
           {COURSES.map((c) => (
             <option key={c.title} value={c.title}>{c.title}</option>
@@ -218,6 +246,7 @@ export default function Enroll() {
   const [params] = useSearchParams()
   const preselected = decodeURIComponent(params.get("course") || "")
   const course = COURSES.find((c) => c.title === preselected)
+  const hasCalculatorPackage = Boolean(course && params.get("weeklyCost") && params.get("totalPrice"))
 
   return (
     <>
@@ -251,7 +280,8 @@ export default function Enroll() {
                   <p className="text-muted-foreground text-sm mb-8" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                     Fill in your details below. Our team will confirm your enrollment within 24 hours.
                   </p>
-                  <EnrollForm preselected={preselected} />
+                  {hasCalculatorPackage && <CalculatorPackageSummary params={params} />}
+                  <EnrollForm preselected={preselected} lockCourse={hasCalculatorPackage} />
                 </div>
               </Reveal>
             </div>

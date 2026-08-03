@@ -39,18 +39,18 @@ function OurStory() {
               </p>
               <p className="text-base text-muted-foreground leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                 What began as a small initiative with a handful of scholars has grown into a global platform serving
-                over 5,000 students across 30+ countries, all united by their love for knowledge and Islam.
+                students across 30+ countries, all united by their love for knowledge and Islam.
               </p>
               <div className="grid grid-cols-2 gap-4 pt-2">
                 {[
-                  ["5,000+", "Active Students"],
+                  ["",       "Global Students"],
                   ["25+",    "Courses Offered"],
                   ["20+",    "Expert Scholars"],
                   ["30+",    "Countries Reached"],
                 ].map(([v, l]) => (
                   <div key={l} className="bg-background rounded-2xl p-4 border border-border">
-                    <div className="text-2xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>
-                    <div className="text-xs text-muted-foreground font-semibold mt-1">{l}</div>
+                    {v && <div className="text-2xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>}
+                    <div className={`${v ? "text-xs text-muted-foreground mt-1" : "text-lg text-primary"} font-bold`}>{l}</div>
                   </div>
                 ))}
               </div>
