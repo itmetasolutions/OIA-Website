@@ -13,7 +13,7 @@ import ReviewsSection from "../components/ReviewsSection"
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[130px] sm:pt-[62px] pb-[30px] sm:pb-0">
+    <section id="home" className="relative sm:min-h-screen flex items-center overflow-hidden pt-[138px] sm:pt-[70px] pb-[30px] sm:pb-0">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/50 to-background" />
       <IslamicPattern color="#0A7A58" opacity={0.055} />
       <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/6 blur-3xl" />
@@ -143,7 +143,7 @@ function AboutPreview() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="flex gap-4 justify-center">
-                  {[["30+", "Countries"], ["", "Global Students"]].map(([v, l]) => (
+                  {[["30+", "Countries"]].map(([v, l]) => (
                     <div key={l} className="bg-white/15 backdrop-blur rounded-xl px-4 py-3 text-center border border-white/20">
                       {v && <div className="text-lg font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{v}</div>}
                       <div className={`${v ? "text-[10px] text-white/80" : "text-base text-white"} font-bold`}>{l}</div>

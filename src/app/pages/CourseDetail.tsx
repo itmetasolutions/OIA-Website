@@ -158,7 +158,7 @@ function EnrollSidebar({ title, level, duration, language, hoursPerWeek }: {
   title: string; level: string; duration: string; language: string; hoursPerWeek: string
 }) {
   return (
-    <div className="sticky top-32 bg-card border border-border rounded-3xl overflow-hidden shadow-2xl">
+    <div className="sticky top-[136px] bg-card border border-border rounded-3xl overflow-hidden shadow-2xl">
       <div className="p-6 border-b border-border bg-primary/6">
         <div className="text-2xl font-bold text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
           Register Free

@@ -31,7 +31,7 @@ export default function Courses() {
       />
 
       {/* Filter Bar */}
-      <section className="py-10 bg-card border-b border-border sticky top-[100px] z-40 backdrop-blur-xl bg-card/90">
+      <section className="py-10 bg-card border-b border-border sticky top-[108px] z-40 backdrop-blur-xl bg-card/90">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="relative w-full sm:w-80">

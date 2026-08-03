@@ -217,7 +217,7 @@ export function CTASection({ title, subtitle }: { title: React.ReactNode; subtit
 
 export function PageHero({ badge, title, subtitle, photo, crumb }: { badge: string; title: React.ReactNode; subtitle: string; photo?: string; crumb?: string }) {
   return (
-    <section className="relative pt-[100px] overflow-hidden">
+    <section className="relative pt-[108px] overflow-hidden">
       {photo ? (
         <div className="relative h-[420px] lg:h-[500px]">
           <img src={photo.startsWith("/") || photo.startsWith("http") ? photo : `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=1600&h=600&q=80`} alt="" className="absolute inset-0 w-full h-full object-cover" />

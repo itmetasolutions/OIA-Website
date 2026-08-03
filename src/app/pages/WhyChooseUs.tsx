@@ -27,13 +27,12 @@ function FeatureRow({ Icon, title, desc, image, flip, index }: {
         </div>
 
         {/* Image */}
-        <div className="relative h-full">
+        <div className="relative aspect-[3/2] w-full">
           <div className="rounded-3xl overflow-hidden shadow-2xl h-full">
             <img
               src={image ?? `/Images/Why Choose/${title}.webp`}
               alt={title}
               className="w-full h-full object-cover"
-              style={{ minHeight: 280 }}
             />
           </div>
           {/* Decorative accent */}

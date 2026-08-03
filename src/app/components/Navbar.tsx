@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router"
 import { motion, AnimatePresence } from "motion/react"
-import { Menu, X, Moon, Sun, ChevronRight, ArrowRight, BookOpen, Calculator } from "lucide-react"
-import { LogoMark } from "../shared"
+import { Menu, X, Moon, Sun, ChevronRight, ArrowRight, BookOpen, Calculator, Sparkles } from "lucide-react"
+import { IslamicPattern, LogoMark } from "../shared"
 import CourseFeeCalculator from "./CourseFeeCalculator"
 
 const NAV = [
@@ -39,13 +39,22 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
   return (
     <>
       <div
-        className="fixed inset-x-0 top-0 z-50 flex h-8 items-center justify-center bg-primary px-4 text-center text-xs font-bold tracking-[0.12em] text-primary-foreground shadow-sm"
+        className="fixed inset-x-0 top-0 z-50 h-10 overflow-hidden border-b border-[#D8B55B]/60 text-white shadow-lg shadow-black/10"
+        style={{ background: "linear-gradient(105deg, #081C2D 0%, #07533E 28%, #0A7A58 50%, #07533E 72%, #081C2D 100%)" }}
         role="status"
-        aria-label="3 Days Trial"
+        aria-label="3 Days Free Trial"
       >
-        3 Days Trial
+        <div className="absolute inset-0 opacity-[0.12]"><IslamicPattern color="#ffffff" opacity={0.35} /></div>
+        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent motion-safe:animate-pulse" />
+        <div className="relative flex h-full items-center justify-center gap-3 px-4">
+          <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#D8B55B] sm:w-20" />
+          <Sparkles className="h-3.5 w-3.5 text-[#E4C878]" />
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-white drop-shadow-sm sm:text-xs">3 Days Free Trial</span>
+          <Sparkles className="h-3.5 w-3.5 text-[#E4C878]" />
+          <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#D8B55B] sm:w-20" />
+        </div>
       </div>
-      <header className={`fixed inset-x-0 top-8 z-50 transition-all duration-500 ${
+      <header className={`fixed inset-x-0 top-10 z-50 transition-all duration-500 ${
         transparent
           ? "bg-transparent"
           : "bg-card/95 backdrop-blur-2xl shadow-sm border-b border-border"
@@ -84,19 +93,17 @@ export default function Navbar({ dark, setDark }: { dark: boolean; setDark: (v: 
             >
               Enroll Now <ChevronRight className="w-3.5 h-3.5" />
             </Link>
-            {isHome && (
-              <button
-                type="button"
-                onClick={() => setCalculatorOpen(true)}
-                className="group relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:h-10 md:w-10"
-                aria-label="Open course fee calculator"
-                title="Course Fee Calculator"
-              >
-                <span className="absolute inset-0 -z-10 rounded-full bg-primary/30 motion-safe:animate-ping" aria-hidden="true" />
-                <Calculator className="h-5 w-5" />
-                <span className="pointer-events-none absolute top-12 right-0 whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1 text-[10px] font-bold text-background opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Fee Calculator</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => setCalculatorOpen(true)}
+              className="group relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:h-10 md:w-10"
+              aria-label="Open course fee calculator"
+              title="Course Fee Calculator"
+            >
+              <span className="absolute inset-0 -z-10 rounded-full bg-primary/30 motion-safe:animate-ping" aria-hidden="true" />
+              <Calculator className="h-5 w-5" />
+              <span className="pointer-events-none absolute top-12 right-0 whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1 text-[10px] font-bold text-background opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Fee Calculator</span>
+            </button>
             <button
               className="lg:hidden w-9 h-9 flex items-center justify-center text-foreground"
               onClick={() => setOpen(true)}
